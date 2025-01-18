@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Shapes SV APIs</title>
+    <!-- needed for adaptive design -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet">
+
+    <!--
+    Redoc doesn't change outer page styles
+    -->
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <redoc id="redoc-elem" spec-url='placeholder' show-extensions='x-refdata-source'></redoc>
+
+    <script>
+        function queryHash(url) {
+            const str = url.split('?')[1];
+            const params = {};
+
+            if (str) {
+                const pairs = str.split('&');
+                for (const pair of pairs) {
+                    const [key, value] = pair.split('=');
+                    params[key] = decodeURIComponent(value);
+                }
+            }
+
+            return params;
+        }
+
+        let query = queryHash(location.search);
+        let api = query.api;
+        console.log(api);
+
+        document.getElementById("redoc-elem").setAttribute("spec-url", "https://api.swaggerhub.com/apis/CSGSystems/" + api);
+    </script>
+
+    <script src="https://cdn.redoc.ly/redoc/latest/bundles/redoc.standalone.js"></script>
+  </body>
+</html>
